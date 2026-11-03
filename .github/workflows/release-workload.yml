@@ -29,10 +29,3 @@ jobs:
         IS_STABLE_RELEASE_TAG: ${{ fromJson(github.event.inputs.isStableRelease) }}
       run: make msi -d
       working-directory: ./workload
-
-    - name: Push packages to NuGet.org
-      run: |
-        dotnet nuget push ./workload/out/nuget-unsigned/Samsung.*.nupkg \
-                      -k ${{ secrets.NUGET_APIKEY }} \
-                      -s https://api.nuget.org/v3/index.json \
-                      -t 3000
